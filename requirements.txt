@@ -1,0 +1,5 @@
+fake_bpy_module==20240508
+mathutils==3.3.0
+matplotlib==3.8.2
+numpy==1.26.4
+Pillow==10.3.0

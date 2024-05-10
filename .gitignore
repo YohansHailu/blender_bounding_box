@@ -1,0 +1,22 @@
+# Ignore image files
+*.jpeg
+*.jpg
+*.png
+*.gif
+
+# Ignore video files
+*.mp4
+*.avi
+*.mov
+
+# Ignore audio files
+*.mp3
+*.wav
+
+# file to just cod for expermation
+expermation_code.py
+
+#blender files
+*.blend
+*.blend1
+
