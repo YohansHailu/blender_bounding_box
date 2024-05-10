@@ -1,8 +1,8 @@
 import bpy
 import json
-from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import matplotlib.image as mpimg
 import sys
 
 sys.path.append('./')
@@ -15,7 +15,7 @@ def print_separator():
     print("-" * 50)
 
 def display_image_with_bounds(filepath, bounding_boxs):
-    im = Image.open(filepath)
+    im = mpimg.imread(filepath)
     _, ax = plt.subplots(1)
     ax.imshow(im)
 

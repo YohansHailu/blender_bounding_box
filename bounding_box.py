@@ -1,7 +1,6 @@
 import numpy as np
 import bpy
 import json
-from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
