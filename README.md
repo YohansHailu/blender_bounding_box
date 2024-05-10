@@ -39,11 +39,10 @@ blender -b MorningGateSetup.blend -P test.py
 
 check the test.py file to modify which feature to test, the bounding box calculations or JSON handler as needed.
 
-##Future Work
+## Future Work
 -----------
 
 *   **Support for Empty Objects**: Extend bounding box detection to include empty objects that have mesh children by combining them into one mesh.
 *   **Implementation and conceptualization for path input**: currently does not utilze path.
 *   **S3 Upload**: Implement functionality to upload rendered images directly to AWS S3.
 *   **Code Refinement**: Improve code cleanliness, modularity, and professionalism.
-# blender_bounding_box
