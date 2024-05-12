@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import matplotlib.image as mpimg
 import sys
+import os
 
 sys.path.append('./')
 
@@ -61,40 +62,50 @@ def bounding_box_test(scene_name, camera_name, mesh_names):
     display_image_with_bounds(render_filepath, bounding_boxs)
 
 
-def detect_object_from_json_test():
-    obj_names = ['BrickColumn', 'Bottoms', 'Tops', 'RedPole']
+def detect_object_from_json_test(frame_number):
+    obj_names = ['BrickColumn', 'HumanCollider', 'Cone', 'FireHydrant']
+    res = []
     for obj_name in obj_names:
         json_input = {
             "scene_name": "Scene",
             "object_name": obj_name,
             "route": "s3://renders/<uuid>.jpeg",
             "output_format": "jpeg",
-            "frame_number": 60
+            "frame_number": frame_number
         }
+        res.append(detect_object_form_json(json_input))
         
-        print_separator()
-        print(detect_object_form_json(json_input))
-        print_separator()
+    return res
 
 def main():
 
     scene_name = 'Scene'
     camera_name = 'Camera'
-    render_filepath = './renders.jpg'
+    dirname = os.path.dirname(__file__)
+    render_filepath = os.path.join(dirname, 'renders/renders.jpg')
     
     # render settings
     bpy.context.scene.render.image_settings.file_format='JPEG'
     bpy.context.scene.render.filepath = render_filepath
-    bpy.context.scene.render.resolution_x = 640
-    bpy.context.scene.render.resolution_y = 480
+    bpy.context.scene.render.resolution_x = 1920
+    bpy.context.scene.render.resolution_y = 1080
 
-
-    obj_names = ['BrickColumn', 'Bottoms', 'Tops', 'RedPole']
-    # set the frame number
-    bpy.context.scene.frame_set(60)
+    obj_names = ['BrickColumn', 'HumanCollider', 'Cone', 'FireHydrant']
+    # render single frame
+    bpy.context.scene.frame_set(25)
     bounding_box_test(scene_name, camera_name, obj_names)
 
-    # detect_object_from_json_test()
+
+    # Animation output json
+    # res = []
+    # for i in range(0, 175):
+    #     bpy.context.scene.frame_set(i)
+    #     res.extend(detect_object_from_json_test(i))
+
+    # # write res into json file
+    # with open(os.path.join(dirname, 'output.json'), 'w') as f:
+    #     json.dump(res, f, indent=4)
+
 
 
 
